@@ -11,7 +11,7 @@ export async function getAllTransactions() {
 }
 
 // Get transaction by ID
-export async function getTransactionById(id: number) { // Use `number` for id
+export async function getTransactionById(id: string) { // Use `string` for UUID
     const transaction = await prisma.transaction.findUnique({
         where: { id },
     });
@@ -30,7 +30,7 @@ export async function createTransaction(data: z.infer<typeof transactionSchema>)
 }
 
 // Update a transaction
-export async function updateTransaction(id: number, data: z.infer<typeof transactionSchema>) { // Use `number` for id
+export async function updateTransaction(id: string, data: z.infer<typeof transactionSchema>) { // Use `string` for UUID
     const validatedData = transactionSchema.parse(data);
 
     const transaction = await prisma.transaction.update({
@@ -42,7 +42,7 @@ export async function updateTransaction(id: number, data: z.infer<typeof transac
 }
 
 // Delete a transaction
-export async function deleteTransaction(id: number) { // Use `number` for id
+export async function deleteTransaction(id: string) { // Use `string` for UUID
     await prisma.transaction.delete({
         where: { id },
     });

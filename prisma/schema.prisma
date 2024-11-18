@@ -8,13 +8,13 @@ generator client {
 }
 
 model Transaction {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(uuid())
   title       String
   amount      Float
   date        DateTime @default(now())
   type        TransactionType
   description String?
-  source      String? // Optional field for specifying the source (e.g., "Salary", "Business")
+  source      String?
 }
 
 enum TransactionType {

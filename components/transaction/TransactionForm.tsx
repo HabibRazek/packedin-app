@@ -39,7 +39,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ initialData }) => {
         handleSubmit,
         setValue,
         watch,
-        reset, // React Hook Form reset function
+        reset, 
         formState: { errors, isSubmitting },
     } = useForm<TransactionFormValues>({
         resolver: zodResolver(transactionSchema),

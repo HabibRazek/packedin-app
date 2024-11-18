@@ -1,6 +1,6 @@
 export interface TransactionFormProps {
     initialData?: {
-        id: number;
+        id: string; 
         title: string;
         amount: number;
         type: "INCOME" | "EXPENSE";
