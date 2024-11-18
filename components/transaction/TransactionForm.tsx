@@ -90,7 +90,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({ initialData }) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className="mt-4">Add Transaction</Button>
+                <Button  variant="outline">Add Transaction</Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>

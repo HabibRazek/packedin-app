@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { ArrowUpDown } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 // Define the shape of your transaction data
 export type Transaction = {
@@ -22,19 +23,14 @@ export const columns: ColumnDef<Transaction>[] = [
         header: ({ column }) => (
             <div
                 className="flex items-center gap-2 cursor-pointer"
-                onClick={() =>
-                    column.toggleSorting(column.getIsSorted() === "asc")
-                }
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
                 Title
                 <ArrowUpDown className="h-4 w-4" />
             </div>
         ),
         cell: ({ row }) => (
-            <div
-                className="truncate whitespace-nowrap"
-                title={row.getValue("title")}
-            >
+            <div className="truncate whitespace-nowrap" title={row.getValue("title")}>
                 {row.getValue("title")}
             </div>
         ),
@@ -59,6 +55,14 @@ export const columns: ColumnDef<Transaction>[] = [
     {
         accessorKey: "type",
         header: "Type",
+        cell: ({ row }) => {
+            const type = row.getValue<"INCOME" | "EXPENSE">("type");
+            return (
+                <Badge variant={type === "INCOME" ? "success" : "danger"}>
+                    {type}
+                </Badge>
+            );
+        },
         size: 100,
     },
     {
@@ -66,9 +70,7 @@ export const columns: ColumnDef<Transaction>[] = [
         header: ({ column }) => (
             <div
                 className="flex items-center gap-2 cursor-pointer"
-                onClick={() =>
-                    column.toggleSorting(column.getIsSorted() === "asc")
-                }
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             >
                 Date
                 <ArrowUpDown className="h-4 w-4" />

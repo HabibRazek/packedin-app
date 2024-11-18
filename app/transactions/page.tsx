@@ -1,3 +1,4 @@
+import { Separator } from "@/components/ui/separator";
 import { columns, Transaction } from "./columns"; 
 import { DataTable } from "./data-table";
 import { getAllTransactions } from "@/actions/transaction.actions";
@@ -18,6 +19,7 @@ export default async function TransactionPage() {
                     Keep track of all your transactions in one place. View, sort, and manage them easily.
                 </p>
             </div>
+            <Separator/>
             <DataTable columns={columns} data={transactions} />
         </div>
     );
