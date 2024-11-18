@@ -5,7 +5,7 @@ import { getAllTransactions } from "@/actions/transaction.actions";
 import { CiBank } from "react-icons/ci";
 
 export default async function TransactionPage() {
-    // Fetch transactions from the server
+    
     const transactions: Transaction[] = await getAllTransactions();
 
     return (
@@ -18,8 +18,8 @@ export default async function TransactionPage() {
                 <p className="text-sm text-gray-600 mt-1">
                     Keep track of all your transactions in one place. View, sort, and manage them easily.
                 </p>
+            <Separator  className="mb-6 mt-3"/>
             </div>
-            <Separator/>
             <DataTable columns={columns} data={transactions} />
         </div>
     );

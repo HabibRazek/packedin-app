@@ -4,11 +4,13 @@ import * as React from "react";
 import {
     ColumnDef,
     SortingState,
+    ColumnFiltersState,
     VisibilityState,
     flexRender,
     getCoreRowModel,
     getPaginationRowModel,
     getSortedRowModel,
+    getFilteredRowModel,
     useReactTable,
 } from "@tanstack/react-table";
 import {
@@ -39,6 +41,8 @@ export function DataTable<TData, TValue>({
     data,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = React.useState<SortingState>([]);
+    const [columnFilters, setColumnFilters] =
+        React.useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] =
         React.useState<VisibilityState>({});
 
@@ -48,16 +52,20 @@ export function DataTable<TData, TValue>({
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getSortedRowModel: getSortedRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
         onSortingChange: setSorting,
+        onColumnFiltersChange: setColumnFilters,
         onColumnVisibilityChange: setColumnVisibility,
         state: {
             sorting,
+            columnFilters,
             columnVisibility,
         },
     });
 
     return (
-        <div >
+        <div>
+            {/* Top Controls */}
             <div className="flex justify-between items-center mb-4">
                 {/* Search Input */}
                 <Input
@@ -94,8 +102,6 @@ export function DataTable<TData, TValue>({
                                 ))}
                         </DropdownMenuContent>
                     </DropdownMenu>
-
-
                 </div>
             </div>
 
